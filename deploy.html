@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Deploy Trigger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: #0f172a;
+            color: white;
+        }
+
+        .box {
+            text-align: center;
+            padding: 30px;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            background: #111827;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            background: #22c55e;
+            color: white;
+            width: 100%;
+        }
+
+        button:disabled {
+            background: #64748b;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        .error {
+            color: #f87171;
+        }
+
+        .success {
+            color: #4ade80;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>Deploy Panel</h2>
+
+        <input type="password" id="password" placeholder="Enter password" />
+
+        <button id="deployBtn">Trigger Deploy</button>
+
+        <div class="status" id="status">Waiting...</div>
+    </div>
+
+    <script>
+        const btn = document.getElementById("deployBtn");
+        const status = document.getElementById("status");
+        const passwordInput = document.getElementById("password");
+
+        const DEPLOY_PASSWORD = "abdullah2004abn$$"; // 👈 change this
+
+        let triggered = false;
+
+        btn.addEventListener("click", async () => {
+            if (triggered) return;
+
+            const enteredPassword = passwordInput.value;
+
+            // ✅ check password first
+            if (enteredPassword !== DEPLOY_PASSWORD) {
+                status.innerText = "❌ Incorrect password";
+                status.className = "status error";
+                return;
+            }
+
+            triggered = true;
+            btn.disabled = true;
+            status.innerText = "Triggering deploy...";
+            status.className = "status";
+
+            try {
+                const res = await fetch("https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/a95c78fd-236b-4c97-8ba0-32feb2710ff6", {
+                    method: "POST"
+                });
+
+                if (res.ok) {
+                    status.innerText = "✅ Deploy triggered successfully!";
+                    status.className = "status success";
+                } else {
+                    status.innerText = "❌ Deploy failed";
+                    status.className = "status error";
+                    btn.disabled = false;
+                    triggered = false;
+                }
+            } catch (err) {
+                status.innerText = "❌ Error triggering deploy";
+                status.className = "status error";
+                btn.disabled = false;
+                triggered = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
