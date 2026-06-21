@@ -8,10 +8,10 @@
     "public_folder": "/media",
     "collections": [
         {
-            "name": "gym-leads",
-            "label": "Gym Leads",
-            "label_singular": "Gym Lead",
-            "folder": "content/gym-leads",
+            "name": "leads",
+            "label": "Leads",
+            "label_singular": "Lead",
+            "folder": "content/leads",
             "create": true,
             "format": "json",
             "extension": "json",
