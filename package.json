@@ -1,0 +1,15 @@
+{
+  "name": "gym-leads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "node scripts/generate-leads-detail.js",
+    "build": "echo \"no build step\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
+
