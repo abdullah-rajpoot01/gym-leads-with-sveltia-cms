@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const LEADS_DIR = path.join(process.cwd(), "content", "leads");
+const LEADS_DIR = path.join(process.cwd(), "content", "gym-leads");
 const OUTPUT_FILE = path.join(LEADS_DIR, "detail.json");
 
 function getLeadFiles() {

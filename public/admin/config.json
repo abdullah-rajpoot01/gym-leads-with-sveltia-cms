@@ -2,16 +2,16 @@
     "$schema": "https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json",
     "backend": {
         "name": "github",
-        "repo": "abdullah-rajpoot01/welcome-real-estate"
+        "repo": "abdullah-rajpoot01/gym-leads-with-sveltia-cms"
     },
     "media_folder": "/public/media",
     "public_folder": "/media",
     "collections": [
         {
-            "name": "leads",
-            "label": "Leads",
-            "label_singular": "Lead",
-            "folder": "content/leads",
+            "name": "gym-leads",
+            "label": "Gym Leads",
+            "label_singular": "Gym Lead",
+            "folder": "content/gym-leads",
             "create": true,
             "format": "json",
             "extension": "json",
