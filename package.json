@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prebuild": "node scripts/generate-leads-detail.js",
+    "prebuild": "node scripts/generate-leads-json.js",
     "build": "echo \"no build step\""
   },
   "keywords": [],
